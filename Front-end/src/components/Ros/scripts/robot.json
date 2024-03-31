@@ -1,0 +1,108 @@
+[
+    {
+      "name": "TurtlebotSim001",
+      "rosbridge_server_ip": "10.147.20.161",
+      "rosbridge_server_port": "9090",
+      "topics": {
+            "cmd_vel": {
+              "topic_name": "",
+              "message_type": ""
+            },
+            "scan": {
+              "topic_name": "",
+              "message_type": ""
+            },
+            "map": {
+              "topic_name": "",
+              "message_type": ""
+            },
+            "plannedPath": {
+              "topic_name": "",
+              "message_type": ""
+            },
+            "amcl_cov": {
+              "topic_name": "",
+              "message_type": ""
+            },
+            "amcl_pose": {
+              "topic_name": "",
+              "message_type": ""
+            },
+            "Navspeed": {
+              "topic_name": "",
+              "message_type": ""
+            },
+            "Navposition": {
+              "topic_name": "",
+              "message_type": ""
+            },
+            "Slamspeed": {
+              "topic_name": "",
+              "message_type": ""
+            },
+            "Slamposition": {
+              "topic_name": "",
+              "message_type": ""
+            },
+            "initPose": {
+              "topic_name": "",
+              "message_type": ""
+            }
+               }  
+    },
+    {
+      "name": "Seagate003",
+      "rosbridge_server_ip": "10.147.20.143",
+      "rosbridge_server_port": "9090",
+      "topic": {
+        "cmd_vel": {
+          "topic_name": "",
+          "message_type": ""
+        },
+        "scan": {
+          "topic_name": "",
+          "message_type": ""
+        },
+        "map": {
+          "topic_name": "",
+          "message_type": ""
+        },
+        "plannedPath": {
+          "topic_name": "",
+          "message_type": ""
+        },
+        "amcl_cov": {
+          "topic_name": "",
+          "message_type": ""
+        },
+        "amcl_pose": {
+          "topic_name": "",
+          "message_type": ""
+        },
+        "Navspeed": {
+          "topic_name": "",
+          "message_type": ""
+        },
+        "Navposition": {
+          "topic_name": "",
+          "message_type": ""
+        },
+        "Slamspeed": {
+          "topic_name": "",
+          "message_type": ""
+        },
+        "Slamposition": {
+          "topic_name": "",
+          "message_type": ""
+        },
+        "initPose": {
+          "topic_name": "",
+          "message_type": ""
+        }
+               }  
+    }
+
+  
+    
+]
+  
