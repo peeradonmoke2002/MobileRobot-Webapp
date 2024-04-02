@@ -61,6 +61,19 @@ export const removeTopicByRobotAndTopic = (robotName, topicName) => async (dispa
   }
 };
 
+export const editTopicByRobotAndTopic = (robotName, topics) => async (dispatch) => {
+  try {
+    // Make a PUT request to update the specified topics for the robot
+    await axios.put(`http://10.100.16.55:3001/api/topics/${robotName}`, { topics });
+    // Dispatch an action to update the topics after editing
+    dispatch(fetchTopicByRobot(robotName));
+  } catch (error) {
+    console.error('Error updating topics:', error);
+    throw error;
+  }
+};
+
+
 const topicSlice = createSlice({
   name: 'topics',
   initialState: {
