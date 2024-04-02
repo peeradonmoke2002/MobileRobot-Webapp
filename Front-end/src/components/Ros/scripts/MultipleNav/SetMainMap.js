@@ -6,6 +6,7 @@ import RobotlistAvailable from './RobotlistAvailable';
 import { Col, Row, Container } from 'react-bootstrap';
 import MapList from '../MapManager/MapList';
 import { fetchTopicByRobot, getAGVsTopicsByRobot } from '../../Data/TopicSlice';
+import ReplayTwoToneIcon from '@mui/icons-material/ReplayTwoTone';
 
 
 const SetMainMap = ({}) => {
@@ -30,6 +31,12 @@ const SetMainMap = ({}) => {
 
   }, [dispatch, name]);
 
+  const handleReloadData = () => {
+    if (name) {
+        setKey((prevKey) => prevKey + 1);
+    }
+};
+
  
   const poseListener = Topic? {
       topic_name: Topic.nav_poseListener.topic_name ,
@@ -48,6 +55,7 @@ const SetMainMap = ({}) => {
     setSelectedRobot(selectedRobotData);
     console.log('Selected Robot:', selectedRobot);
     setKey((prevKey) => prevKey + 1);
+    handleReloadData();
   };
 
   return (
@@ -63,6 +71,9 @@ const SetMainMap = ({}) => {
             Select Main Robot for get the main map:
           </div>
           <RobotlistAvailable onSelect={handleRobotSelection} />
+          <button onClick={handleReloadData} className='refresh-multiple-btn'>
+           <ReplayTwoToneIcon/>
+          </button>
         </div>
       </Row>
       <Row>

@@ -244,6 +244,18 @@ code {
   border-color: #505050;
 }
 
+.refresh-multiple-btn {
+  display: flex;
+  border-radius: 8px;
+  border: 2px solid;
+  width: 30px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  color: #505050;
+  border-color: #505050;
+}
+
 .refresh-btn:hover {
   color: #8c8c8c;
   border-color: #8a8a8a;

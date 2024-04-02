@@ -51,6 +51,8 @@ const Multiple_Navigation = () => {
   
     }, [dispatch, name]);
 
+ 
+
     const scan = Topic ? {
         topic_name: Topic.scan.topic_name ,
         messageType: Topic.scan.message_type ,
@@ -97,8 +99,6 @@ const Multiple_Navigation = () => {
       console.log('Selected Robot Data:', selectedRobotData);
      
     };
-
-
 
     return (
         <Container  className="px-0" 
