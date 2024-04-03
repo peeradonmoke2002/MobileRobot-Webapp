@@ -9,6 +9,7 @@ const EditTopicsOverlay = ({ robotName, onClose }) => {
   const topics = useSelector(state => getAGVsTopicsByRobot(state, robotName));
   const [updatedTopics, setUpdatedTopics] = useState({});
   const [warning, setWarning] = useState('');
+  console.log('topics', topics);
 
   useEffect(() => {
     dispatch(fetchTopicByRobot(robotName));
@@ -40,9 +41,10 @@ const EditTopicsOverlay = ({ robotName, onClose }) => {
         {warning && <p style={{ color: 'red' }}>{warning}</p>}
         {Object.entries(updatedTopics).map(([topicKey, topicData]) => (
           <Row key={topicKey} className="mb-3">
+            <Form.Label>topic: {topicKey}</Form.Label>
             <Col xs={12} md={5}>
               <Form.Group className="mb-3" controlId={`topicName_${topicKey}`}>
-                <Form.Label>Topic Name:</Form.Label>
+                <Form.Label>Topic name</Form.Label>
                 <Form.Control type="text" value={topicData.topic_name} onChange={e => handleTopicChange(topicKey, { ...updatedTopics[topicKey], topic_name: e.target.value })} />
               </Form.Group>
             </Col>
