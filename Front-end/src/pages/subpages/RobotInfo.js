@@ -56,7 +56,7 @@ return (
                 </Overlay>
             </Row>
             <Row>
-                <ActiveInfo robotName={name} />
+                <ActiveInfo robotName={name} ip={ip}/>
             </Row>
         </Row>
     </Col>

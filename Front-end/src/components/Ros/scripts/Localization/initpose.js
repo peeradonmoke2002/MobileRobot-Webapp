@@ -235,7 +235,7 @@ const InitPose = ({robotname, ip, initMarkerPose}) => {
       </Row>
 
 
-      <Row style={{marginTop:'1rem',marginBottom:'1rem'}}>
+      {/* <Row style={{marginTop:'1rem',marginBottom:'1rem'}}>
           <Col xs={5}>
             <hr style={{  color: '#000000',
                           backgroundColor: '#000000',
@@ -251,10 +251,10 @@ const InitPose = ({robotname, ip, initMarkerPose}) => {
                           height: '2px',
                         }}/>
           </Col>
-      </Row>
+      </Row> */}
       
       <Row>
-        <Col xs={1}>X:</Col>
+        {/* <Col xs={1}>X:</Col>
         <Col xs={3}>
           <input type="text" className="form-control" id="initposeXText" value={xi.toFixed(1)} readOnly />
         </Col>
@@ -265,7 +265,7 @@ const InitPose = ({robotname, ip, initMarkerPose}) => {
         <Col xs={1}>Z:</Col>
         <Col xs={3}>
           <input type="text" className="form-control" id="initposeWText" value={ai.toFixed(1)} readOnly />
-        </Col>
+        </Col> */}
       </Row>
       <Row className="mt-3">
         <div style={{justifyContent:'center'}}>
