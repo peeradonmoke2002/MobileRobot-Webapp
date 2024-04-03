@@ -192,9 +192,9 @@ const InitPose = ({robotname, ip, initMarkerPose}) => {
   
       <Row>
         <div style={{ display: 'flex',justifyContent:'center'}}>
-          <p style={{paddingRight:'30px'}}>X: {xi.toFixed(1)}</p>
+          {/* <p style={{paddingRight:'30px'}}>X: {xi.toFixed(1)}</p>
           <p style={{paddingRight:'30px'}}>Y: {yi.toFixed(1)}</p>
-          <p>W: {ai.toFixed(0)}</p>
+          <p>W: {ai.toFixed(0)}</p> */}
         </div>
       </Row>
       <Row style={{ display: 'flex' }} >
@@ -233,6 +233,7 @@ const InitPose = ({robotname, ip, initMarkerPose}) => {
           </Button>
         </Col>
       </Row>
+      <br/>
 
 
       {/* <Row style={{marginTop:'1rem',marginBottom:'1rem'}}>
@@ -254,7 +255,7 @@ const InitPose = ({robotname, ip, initMarkerPose}) => {
       </Row> */}
       
       <Row>
-        {/* <Col xs={1}>X:</Col>
+        <Col xs={1}>X:</Col>
         <Col xs={3}>
           <input type="text" className="form-control" id="initposeXText" value={xi.toFixed(1)} readOnly />
         </Col>
@@ -265,7 +266,7 @@ const InitPose = ({robotname, ip, initMarkerPose}) => {
         <Col xs={1}>Z:</Col>
         <Col xs={3}>
           <input type="text" className="form-control" id="initposeWText" value={ai.toFixed(1)} readOnly />
-        </Col> */}
+        </Col>
       </Row>
       <Row className="mt-3">
         <div style={{justifyContent:'center'}}>
