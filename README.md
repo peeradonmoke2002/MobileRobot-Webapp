@@ -11,15 +11,19 @@ cd  Front-end && npm install && npm run build
 cd  Back-end && npm install && pm2 start index.js
 ```
 3. Create a database in PostgreSQL
+
 *will be update soon*
 
 4. import database from `backup-database`
+
 *will be update soon*
 
 5. Run the web-app
+
 *wil be update soon*
 
 ## Usage    
+
 *wil be update soon*
 
 
