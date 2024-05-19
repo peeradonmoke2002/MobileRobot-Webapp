@@ -1,5 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import config from '../../../config/configureAPI'
+
+
+const currentUrl = window.location.href;
+const isDeploy = currentUrl.includes('localhost') ? 'development' : 'production';  
+const environment = process.env.NODE_ENV || isDeploy;
+const API = config[environment].API;
 
 const arraysEqual = (arr1, arr2) => {
   if (arr1.length !== arr2.length) {
@@ -17,7 +24,7 @@ const arraysEqual = (arr1, arr2) => {
 
 export const fetchTopic = () => async (dispatch, getState) => {
   try {
-    const response = await axios.get('http://10.100.16.55:3001/api/topics');
+    const response = await axios.get(`${API}/api/topics`);
     const data = response.data;
 
     const currentTopicNames = getAGVsTopics(getState());
@@ -34,7 +41,7 @@ export const fetchTopic = () => async (dispatch, getState) => {
 
 export const fetchTopicByRobot = (robotName) => async (dispatch, getState) => {
   try {
-    const response = await axios.get(`http://10.100.16.55:3001/api/topics/${robotName}`);
+    const response = await axios.get(`${API}/api/topics/${robotName}`);
     const topics = response.data;
     const currentTopicNames = getAGVsTopics(getState());
     if (!topics || topics.length === 0 || !arraysEqual(topics, currentTopicNames)) {
@@ -50,7 +57,7 @@ export const fetchTopicByRobot = (robotName) => async (dispatch, getState) => {
 export const removeTopicByRobotAndTopic = (robotName, topicName) => async (dispatch) => {
   try {
     // Make a DELETE request to remove the specified topic
-    await axios.delete(`http://10.100.16.55:3001/api/topics/${robotName}/${topicName}`);
+    await axios.delete(`${API}/api/topics/${robotName}/${topicName}`);
 
     // Dispatch actions to update the topics after removing the topic
     dispatch(fetchTopic());
@@ -64,7 +71,7 @@ export const removeTopicByRobotAndTopic = (robotName, topicName) => async (dispa
 export const editTopicByRobotAndTopic = (robotName, topics) => async (dispatch) => {
   try {
     // Make a PUT request to update the specified topics for the robot
-    await axios.put(`http://10.100.16.55:3001/api/topics/${robotName}`, { topics });
+    await axios.put(`${API}/api/topics/${robotName}`, { topics });
     // Dispatch an action to update the topics after editing
     dispatch(fetchTopicByRobot(robotName));
   } catch (error) {

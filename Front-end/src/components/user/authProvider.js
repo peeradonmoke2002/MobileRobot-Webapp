@@ -1,3 +1,11 @@
+import config from '../../config/configureAPI'
+
+
+const currentUrl = window.location.href;
+const isDeploy = currentUrl.includes('localhost') ? 'development' : 'production';  
+const environment = process.env.NODE_ENV || isDeploy;
+const API = config[environment].API;
+
 const authProvider = {
 //  <------------------------ Login ------------------------>
     login: ({ usernameOrEmail, password }) =>  {
@@ -35,7 +43,7 @@ const authProvider = {
                 return;
             }
 
-            fetch("http://10.100.16.55:3001/api/users", {
+            fetch(`${API}/api/users`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -86,7 +94,7 @@ const authProvider = {
                 console.log("LogIn Status: Not logged in yet");
                 reject({ redirectTo: '/'});
             } else {
-                fetch("http://10.100.16.55:3001/verify", {
+                fetch(`${API}/verify`, {
                     method: "POST",
                     headers: {
                         'jwt-token': user.token
@@ -157,7 +165,7 @@ const authProvider = {
                 return;
             }
 
-            fetch("http://10.100.16.55:3001/register", {
+            fetch(`${API}/register`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -181,7 +189,7 @@ const authProvider = {
     },
     changePassword: ({ identity, configPassword, confirmPassword, currentPassword }) => {
         return new Promise((resolve, reject) => {
-            fetch(`http://10.100.16.55:3001/api/change-password/${identity}`, {
+            fetch(`${API}/api/change-password/${identity}`, {
                 method: "PUT",
                 headers: {
                     'Content-Type': 'application/json'
@@ -203,7 +211,7 @@ const authProvider = {
     },
     deleteUser: ({targetUser}) => {
         return new Promise((resolve, reject)=>{
-            fetch(`http://10.100.16.55:3001/api/remove-user/${targetUser}`,{
+            fetch(`${API}/api/remove-user/${targetUser}`,{
                 method:"DELETE",
                 headers: {
                     'Content-Type': 'application/json'

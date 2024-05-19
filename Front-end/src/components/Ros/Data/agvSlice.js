@@ -1,5 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import config from '../../../config/configureAPI'
+
+
+const currentUrl = window.location.href;
+const isDeploy = currentUrl.includes('localhost') ? 'development' : 'production';  
+const environment = process.env.NODE_ENV || isDeploy;
+const API = config[environment].API;
 
 const arraysEqual = (arr1, arr2) => {
   if (arr1.length !== arr2.length) {
@@ -18,7 +25,7 @@ const arraysEqual = (arr1, arr2) => {
 export const fetchMoveBaseInformation = () => async (dispatch, getState) => {
   try {
   
-    const response = await axios.get('http://10.100.16.55:3001/api/robots-config');
+    const response = await axios.get(`${API}/api/robots-config`);
     const data = response.data;
     const currentState = getMoveInformation(getState());
     if (data !== currentState) {
@@ -33,7 +40,7 @@ export const fetchMoveBaseInformation = () => async (dispatch, getState) => {
 
 export const fetchmodeBase = (robotName) => async (dispatch, getState) => {
   try {
-    const response = await axios.get(`http://10.100.16.55:3001/api/robot-mode/${robotName}`);
+    const response = await axios.get(`${API}/api/robot-mode/${robotName}`);
     const data = response.data;
     
     if (response.status === 404) {
@@ -56,7 +63,7 @@ export const fetchmodeBase = (robotName) => async (dispatch, getState) => {
 
 export const addRobot = (robotData) => async (dispatch) => {
   try {
-    const response = await axios.post(`http://10.100.16.55:3001/api/add-robot/`, robotData, {
+    const response = await axios.post(`${API}/api/add-robot/`, robotData, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -70,7 +77,7 @@ export const addRobot = (robotData) => async (dispatch) => {
 };
 export const removeRobot = (robotName) => async (dispatch) => {
   try {
-    await axios.delete(`http://10.100.16.55:3001/api/remove-robot/${robotName}`);
+    await axios.delete(`${API}/api/remove-robot/${robotName}`);
     dispatch(fetchMoveBaseInformation());
     dispatch(removeAGVsInformation(robotName)); 
   } catch (error) {
@@ -82,7 +89,7 @@ export const removeRobot = (robotName) => async (dispatch) => {
 export const handleEditRobot = (selectedRobot, updatedData) => async (dispatch) => {
   try {
     // Make a PUT request to the edit endpoint
-    await axios.put(`http://10.100.16.55:3001/api/edit-robot/${selectedRobot.name}`,updatedData);
+    await axios.put(`${API}/api/edit-robot/${selectedRobot.name}`,updatedData);
 
     // Optionally, you may want to refresh the robot list or update the state
     dispatch(fetchMoveBaseInformation());

@@ -1,6 +1,13 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import config from '../../../config/configureAPI'
+
+
+const currentUrl = window.location.href;
+const isDeploy = currentUrl.includes('localhost') ? 'development' : 'production';  
+const environment = process.env.NODE_ENV || isDeploy;
+const API = config[environment].API;
 
 export const waypointsSlice = createSlice({
   name: 'waypoints',
@@ -34,7 +41,7 @@ const arraysEqual = (arr1, arr2) => {
 // Async action for fetching waypoints
 export const fetchWaypointsAsync = () => async (dispatch, getState) => {
     try {
-      const response = await axios.get('http://10.100.16.55:3001/api/waypoints/');
+      const response = await axios.get(`${API}/api/waypoints/`);
       const data = response.data;
   
       const currentState = selectWaypoints(getState());
@@ -50,7 +57,7 @@ export const fetchWaypointsAsync = () => async (dispatch, getState) => {
   };
   export const sendWaypointToDatabase = (data) => async (dispatch) => {
     try {
-      const response = await axios.post('http://10.100.16.55:3001/api/waypoints/', data, {
+      const response = await axios.post(`${API}/api/waypoints/`, data, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -66,7 +73,7 @@ export const fetchWaypointsAsync = () => async (dispatch, getState) => {
   
 export const clearWaypointsTable = () => async (dispatch) => {
     try {
-      await axios.delete('http://10.100.16.55:3001/api/waypoints/all');
+      await axios.delete(`${API}/api/waypoints/all`);
   
       console.log('Table cleared successfully');
       dispatch(fetchWaypointsAsync());
@@ -79,7 +86,7 @@ export const clearWaypointsTable = () => async (dispatch) => {
 
 export const downloadWaypoints = () => async (dispatch) => {
   try {
-    const response = await axios.get('http://10.100.16.55:3001/api/waypoints/');
+    const response = await axios.get(`${API}/api/waypoints/`);
     const waypoints = response.data;
 
     const waypointsJson = JSON.stringify(waypoints, null, 2);
@@ -105,7 +112,7 @@ export const uploadWaypoints = (file) => async (dispatch) => {
 
     console.log('Parsed Waypoints:', waypoints);
 
-    const response = await axios.post('http://10.100.16.55:3001/api/waypoints/batch', waypoints, {
+    const response = await axios.post(`${API}/api/waypoints/batch`, waypoints, {
       headers: {
         'Content-Type': 'application/json',
       },

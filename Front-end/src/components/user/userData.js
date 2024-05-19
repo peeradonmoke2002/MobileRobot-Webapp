@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import authProvider from './authProvider';
+import config from '../../config/configureAPI';
+
+
+const currentUrl = window.location.href;
+const isDeploy = currentUrl.includes('localhost') ? 'development' : 'production';  
+const environment = process.env.NODE_ENV || isDeploy;
+const API = config[environment].API;
 
 const UserTable = () => {
   const [users, setUsers] = useState([]);
@@ -17,7 +24,7 @@ const UserTable = () => {
 
   useEffect(() => {
     const fetchData = () => {
-      fetch('http://10.100.16.55:3001/api/users')
+      fetch(`${API}/api/users`)
         .then(response => response.json())
         .then(data => {
           const sortedData = data.sort((a, b) => a.id - b.id);

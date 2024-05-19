@@ -1,5 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import config from '../../../config/configureAPI'
+
+
+const currentUrl = window.location.href;
+const isDeploy = currentUrl.includes('localhost') ? 'development' : 'production';  
+const environment = process.env.NODE_ENV || isDeploy;
+const API = config[environment].API;
 
 const arraysEqual = (arr1, arr2) => {
   if (arr1.length !== arr2.length) {
@@ -17,7 +24,7 @@ const arraysEqual = (arr1, arr2) => {
 
 export const fetchMapNames = () => async (dispatch, getState) => {
   try {
-    const response = await axios.get('http://10.100.16.55:3001/api/maps/names');
+    const response = await axios.get(`${API}/api/maps/names`);
     const newMapNames = response.data;
 
     const currentMapNames = selectMapNames(getState());
@@ -36,7 +43,7 @@ export const deleteMapByName = (mapName) => async (dispatch) => {
     console.log(`Attempting to delete map with name: ${mapName}`);
 
     // Make the DELETE request to your API
-    await axios.delete(`http://10.100.16.55:3001/api/maps/names/${mapName}`);
+    await axios.delete(`${API}/api/maps/names/${mapName}`);
     
     console.log(`Map with name '${mapName}' deleted successfully`);
 
