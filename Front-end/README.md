@@ -4,14 +4,6 @@ This is a web application for controlling a multiple mobile robot. By use ReactJ
 
 ## Installation
 
-Start web-app with docker-compose
-```bash
-docker-compose up
-```
-Stop web-app with docker-compose
-```bash
-docker-compose down
-```
 Start web-app with docker-compose in background
 ```bash
 docker-compose up -d
